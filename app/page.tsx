@@ -1,11 +1,13 @@
-import React from "react";
+import Link from "next/link";
+import { GlobalStyle } from "./styles/GlobalStyle";
 
-function HelloWorld() {
+export default function tests() {
   return (
     <div>
-      <h1>안녕</h1>
+      <GlobalStyle />
+      <button>
+        <Link href="/pages/PlayerSearch">이동</Link>
+      </button>
     </div>
   );
 }
-
-export default HelloWorld;
