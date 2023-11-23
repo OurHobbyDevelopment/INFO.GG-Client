@@ -1,3 +1,16 @@
+import { HeaderListType } from "@/app/types/types";
+import { HeaderList } from "./list";
+
 export default function Header() {
-  return <div>This Components is Header</div>;
+  return (
+    <>
+      {HeaderList.map(({ id, name, addr }) => {
+        return (
+          <a key={id} href={addr}>
+            {name}
+          </a>
+        );
+      })}
+    </>
+  );
 }

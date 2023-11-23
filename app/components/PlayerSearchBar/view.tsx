@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Url } from "@/app/utils/url";
+import { ValContent } from "@/app/api/valContent";
 
 export default function PlayerSearchBarView() {
   const [RiotID, setRiotID] = useState<string>("");
@@ -10,17 +11,11 @@ export default function PlayerSearchBarView() {
     setRiotID(e.target.value);
   };
 
-  const SearchRiotID = () => {
-    const [gameName, tagLine] = RiotID.split("#");
-    console.log(`id : ${gameName}, tag : ${tagLine}`);
-    axios
-      .get(
-        `${Url.Contry}/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-      )
-      .then((res) => {
-        console.log(res);
-      });
+  const SearchRiotID = async () => {
+    const [name, tag] = RiotID.split("#");
+    const res = await ValContent(name, tag);
   };
+
   return (
     <div>
       <input placeholder="Riot ID#태그 입력" onChange={WriteRiotID}></input>
