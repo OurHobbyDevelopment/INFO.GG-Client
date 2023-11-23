@@ -2,11 +2,13 @@
 
 import { Reset } from "styled-reset";
 import * as React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
 // export const metadata = {
 //   title: "INFO.GG",
 //   description: "발로란트 정보를 공유하는 사이트",
 // };
-
+const queryClient = new QueryClient();
 export default function RootLayout({
   children,
 }: {
@@ -14,10 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <React.Fragment>
-        <Reset />
-        <body>{children}</body>
-      </React.Fragment>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <React.Fragment>
+            <Reset />
+            <body>{children}</body>
+          </React.Fragment>
+        </BrowserRouter>
+      </QueryClientProvider>
     </html>
   );
 }

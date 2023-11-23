@@ -1,4 +1,3 @@
-import { HeaderListType } from "@/app/types/types";
 import { HeaderList } from "./list";
 
 export default function Header() {
