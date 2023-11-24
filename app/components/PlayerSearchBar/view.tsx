@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ValContent, ValScore } from "@/app/api/valContent";
+import { ValContent } from "@/app/api/valContent";
 import PlayerInfo from "../PlayerInfo/view";
 
 export default function PlayerSearchBarView() {
@@ -20,13 +20,24 @@ export default function PlayerSearchBarView() {
     setPuuid(response.data.puuid);
     setProfile(response.data.data.card.small);
   };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      SearchRiotID();
+    }
+  };
+
   useEffect(() => {
     console.log(profile);
   }, [profile]);
 
   return (
     <div>
-      <input placeholder="Riot ID#태그 입력" onChange={WriteRiotID}></input>
+      <input
+        placeholder="Riot ID#태그 입력"
+        onChange={WriteRiotID}
+        onKeyPress={handleKeyPress}
+      ></input>
       <button onClick={SearchRiotID}>검색</button>
 
       {res.data && <PlayerInfo data={res.data} profile={profile} />}

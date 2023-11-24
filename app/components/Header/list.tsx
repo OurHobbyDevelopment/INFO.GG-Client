@@ -14,4 +14,9 @@ export const HeaderList = [
     name: "스킨가격",
     addr: "/pages/SkinPrice",
   },
+  {
+    id: 4,
+    name: "꿀팁",
+    addr: "/pages/tips",
+  },
 ];
