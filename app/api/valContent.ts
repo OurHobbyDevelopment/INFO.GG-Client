@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Locale } from "../utils/url";
 
 export const ValContent = async (name: string, tag: string) => {
   const res = await axios.get(
@@ -12,7 +13,7 @@ export const ValContent = async (name: string, tag: string) => {
 
 export const ValScore = async (puuid: string) => {
   const res = await axios.get(
-    `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/kr/${puuid}`
+    `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/${Locale.kr}/${puuid}`
   );
   if (res.status != 200) {
     console.log(`errno ${res.status}`);

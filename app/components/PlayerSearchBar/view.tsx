@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { ValContent } from "@/app/api/valContent";
 import PlayerInfo from "../PlayerInfo/view";
 
+import * as S from "./PlayerSearchBar.style";
+
 export default function PlayerSearchBarView() {
+  const [isEnter, setIsEnter] = useState(false);
+
   const [RiotID, setRiotID] = useState<string>("");
   const [res, setRes] = useState<any>({});
-  const [puuid, setPuuid] = useState<string>("");
   const [profile, setProfile] = useState<string>("");
 
   const WriteRiotID = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,10 +18,12 @@ export default function PlayerSearchBarView() {
 
   const SearchRiotID = async () => {
     const [name, tag] = RiotID.split("#");
-    const response = await ValContent(name, tag);
-    setRes(response.data);
-    setPuuid(response.data.puuid);
-    setProfile(response.data.data.card.small);
+    const Account = await ValContent(name, tag);
+
+    setIsEnter(true);
+
+    setRes(Account.data);
+    setProfile(Account.data.data.card.small);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -28,19 +33,22 @@ export default function PlayerSearchBarView() {
   };
 
   useEffect(() => {
-    console.log(profile);
-  }, [profile]);
+    console.log(isEnter);
+  });
 
   return (
-    <div>
-      <input
-        placeholder="Riot ID#태그 입력"
-        onChange={WriteRiotID}
-        onKeyPress={handleKeyPress}
-      ></input>
-      <button onClick={SearchRiotID}>검색</button>
-
-      {res.data && <PlayerInfo data={res.data} profile={profile} />}
-    </div>
+    <>
+      <S.Box>
+        <S.SearchBox
+          placeholder="Riot ID#태그 입력"
+          onChange={WriteRiotID}
+          onKeyPress={handleKeyPress}
+        ></S.SearchBox>
+        <S.SearchBtn onClick={SearchRiotID}>검색</S.SearchBtn>
+      </S.Box>
+      {res.data && (
+        <PlayerInfo data={res.data} profile={profile} isSearch={isEnter} />
+      )}
+    </>
   );
 }

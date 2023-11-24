@@ -5,4 +5,5 @@ export const Url = {
 
 export const Locale = {
   ko_KR: "ko-KR",
+  kr: "kr",
 };

@@ -1,13 +1,35 @@
+"use client";
+import { ValColor } from "@/app/common/color";
 import Header from "@/app/components/Header/view";
 import PlayerSearchBar from "@/app/components/PlayerSearchBar/view";
 import Title from "@/app/components/Title/view";
 
+import styled from "styled-components";
+
+import bg from "../../asset/png/bg.png";
+import Image from "next/image";
+
 export default function PlayerSearch() {
   return (
-    <div>
+    <Bg>
+      <Img src={bg} alt="bg" />
       <Header />
       <Title />
       <PlayerSearchBar />
-    </div>
+    </Bg>
   );
 }
+
+const Bg = styled.body`
+  background-color: ${ValColor.black};
+`;
+
+const Img = styled(Image)`
+  position: absolute;
+  z-index: -1;
+  bottom: 0px;
+  left: 50%;
+  width: 35%;
+  height: auto;
+  opacity: 0.7;
+`;
