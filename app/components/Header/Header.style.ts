@@ -11,9 +11,9 @@ export const Header = styled.div`
 
 export const Nav = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  width: 75rem;
+  width: 60rem;
 `;
 export const Content = styled.a`
   font-size: 1.1rem;

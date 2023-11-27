@@ -6,8 +6,6 @@ import PlayerInfo from "../PlayerInfo/view";
 import * as S from "./PlayerSearchBar.style";
 
 export default function PlayerSearchBarView() {
-  const [isEnter, setIsEnter] = useState(false);
-
   const [RiotID, setRiotID] = useState<string>("");
   const [res, setRes] = useState<AccountType>();
 
@@ -18,8 +16,6 @@ export default function PlayerSearchBarView() {
   const SearchRiotID = async () => {
     const [name, tag] = RiotID.split("#");
     const Account = await ValContent(name, tag);
-
-    setIsEnter(true);
 
     setRes(Account.data);
   };

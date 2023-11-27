@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import bg from "../../asset/png/bg.png";
 import Image from "next/image";
+import Footer from "@/app/components/Footer/view";
 
 export default function PlayerSearch() {
   return (
@@ -16,18 +17,21 @@ export default function PlayerSearch() {
       <Header />
       <Title />
       <PlayerSearchBar />
+      <Footer />
     </Bg>
   );
 }
 
 const Bg = styled.body`
   background-color: ${ValColor.black};
+
+  /* overflow: hidden; */
 `;
 
 const Img = styled(Image)`
   position: absolute;
   z-index: -1;
-  bottom: 0px;
+  bottom: 0;
   left: 50%;
   width: 35%;
   height: auto;

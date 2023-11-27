@@ -7,3 +7,7 @@ export const Locale = {
   ko_KR: "ko-KR",
   kr: "kr",
 };
+
+export const ClientUrl = {
+  MainUrl: "http://localhost:3000/pages/PlayerSearch",
+};

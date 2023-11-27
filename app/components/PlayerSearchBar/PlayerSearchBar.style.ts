@@ -20,6 +20,8 @@ export const SearchBox = styled.input`
   background-color: ${ValColor.deepGray};
 
   border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   outline: none;
 
   -ms-user-select: none;
@@ -50,6 +52,8 @@ export const SearchBtn = styled.div`
   background-color: ${ValColor.valRed};
   color: white;
 
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   cursor: pointer;
 
   -ms-user-select: none;
