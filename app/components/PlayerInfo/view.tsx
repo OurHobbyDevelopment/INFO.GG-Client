@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import * as S from "./PlayerInfo.style";
 
-export default function PlayerInfo({ data, profile, isEnter }: any) {
-  const [game, setGame] = useState<any>({});
+export default function PlayerInfo({ data }: AccountType) {
+  const [game, setGame] = useState<GameScoreType>();
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
@@ -12,18 +12,19 @@ export default function PlayerInfo({ data, profile, isEnter }: any) {
       try {
         const res = await ValScore(data.puuid);
         setTotal(res.data.results.total);
-        setGame(res);
+        setGame(res.data);
       } catch (error) {
         console.error("Error :", error);
       }
     };
     fetchData();
   }, [data.puuid]);
+
   return (
     <S.InfoBox>
       <S.Text>
         <S.Profile>
-          <S.Card src={profile} alt="Profile Image" />
+          <S.Card src={data.card.small} alt="Profile Image" />
           <div>
             <S.Level>LV {data.account_level}</S.Level>
 
@@ -32,7 +33,8 @@ export default function PlayerInfo({ data, profile, isEnter }: any) {
             </S.Name>
           </div>
         </S.Profile>
-        {game.data?.data.map((e: any) => {
+        {game?.data?.map((e: ScoreType) => {
+          console.log(e);
           return (
             <div>
               <hr />

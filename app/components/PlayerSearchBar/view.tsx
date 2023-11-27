@@ -9,8 +9,7 @@ export default function PlayerSearchBarView() {
   const [isEnter, setIsEnter] = useState(false);
 
   const [RiotID, setRiotID] = useState<string>("");
-  const [res, setRes] = useState<any>({});
-  const [profile, setProfile] = useState<string>("");
+  const [res, setRes] = useState<AccountType>();
 
   const WriteRiotID = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRiotID(e.target.value);
@@ -23,7 +22,6 @@ export default function PlayerSearchBarView() {
     setIsEnter(true);
 
     setRes(Account.data);
-    setProfile(Account.data.data.card.small);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -31,10 +29,6 @@ export default function PlayerSearchBarView() {
       SearchRiotID();
     }
   };
-
-  useEffect(() => {
-    console.log(isEnter);
-  });
 
   return (
     <>
@@ -46,9 +40,7 @@ export default function PlayerSearchBarView() {
         ></S.SearchBox>
         <S.SearchBtn onClick={SearchRiotID}>검색</S.SearchBtn>
       </S.Box>
-      {res.data && (
-        <PlayerInfo data={res.data} profile={profile} isSearch={isEnter} />
-      )}
+      {res?.data && <PlayerInfo data={res.data} />}
     </>
   );
 }
