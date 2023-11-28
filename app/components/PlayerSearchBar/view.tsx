@@ -4,10 +4,12 @@ import { ValContent } from "@/app/api/valContent";
 import PlayerInfo from "../PlayerInfo/view";
 
 import * as S from "./PlayerSearchBar.style";
+import { useRecoilState } from "recoil";
+import { GameData } from "@/app/recoil/GameData";
 
 export default function PlayerSearchBarView() {
   const [RiotID, setRiotID] = useState<string>("");
-  const [res, setRes] = useState<AccountType>();
+  const [gameData, setGameData] = useRecoilState(GameData);
 
   const WriteRiotID = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRiotID(e.target.value);
@@ -17,7 +19,7 @@ export default function PlayerSearchBarView() {
     const [name, tag] = RiotID.split("#");
     const Account = await ValContent(name, tag);
 
-    setRes(Account.data);
+    setGameData(Account.data);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -26,6 +28,9 @@ export default function PlayerSearchBarView() {
     }
   };
 
+  useEffect(() => {
+    console.log(gameData);
+  }, [gameData]);
   return (
     <>
       <S.Box>
@@ -36,7 +41,6 @@ export default function PlayerSearchBarView() {
         ></S.SearchBox>
         <S.SearchBtn onClick={SearchRiotID}>검색</S.SearchBtn>
       </S.Box>
-      {res?.data && <PlayerInfo data={res.data} />}
     </>
   );
 }

@@ -9,7 +9,6 @@ import { ClientUrl } from "@/app/utils/url";
 import { useRecoilState } from "recoil";
 import { FooterIsOpen } from "@/app/recoil/IsOpen";
 import { IsOpen } from "../IsOpen/view";
-import { useState } from "react";
 
 export default function Footer() {
   const [isOpen, setIsOpen] = useRecoilState(FooterIsOpen);

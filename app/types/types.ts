@@ -47,3 +47,12 @@ interface ScoreType {
     tier: number;
   };
 }
+
+interface RankType {
+  gameName: string;
+  tagLine: string;
+  puuid: string;
+  rankedRating: number;
+  competitiveTier: number;
+  leaderboardRank: number;
+}

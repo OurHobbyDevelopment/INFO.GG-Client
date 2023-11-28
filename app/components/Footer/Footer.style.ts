@@ -15,7 +15,7 @@ export const FooterBox = styled.div<{ isOpen: boolean }>`
 `;
 
 export const Footer = styled.div`
-  width: 60rem;
+  width: 58rem;
 `;
 
 export const Top = styled.div`

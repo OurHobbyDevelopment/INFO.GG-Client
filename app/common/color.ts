@@ -1,6 +1,6 @@
 export const ValColor = {
   deepGray: "#31313C",
-  black: "#1C1C1F",
+  black: "#232326",
   valRed: "#e84057",
 };
 

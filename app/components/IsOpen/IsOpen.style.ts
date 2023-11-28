@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 export const OpenBox = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 45%;
   cursor: pointer;

@@ -5,12 +5,12 @@ export const Box = styled.div`
   display: flex;
   justify-content: center;
 
-  height: 15vh;
+  height: 12rem;
 `;
 
 export const SearchBox = styled.input`
   width: 40rem;
-  height: 3.5rem;
+  height: 3rem;
   font-size: 1.1rem;
 
   margin-right: 5px;
@@ -19,7 +19,7 @@ export const SearchBox = styled.input`
   color: white;
   background-color: ${ValColor.deepGray};
 
-  border: none;
+  border-color: ${ValColor.valRed};
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   outline: none;
@@ -41,7 +41,7 @@ export const SearchBtn = styled.div`
   }
 
   width: 8rem;
-  height: 3.6rem;
+  height: 3.3rem;
   font-size: 1.2rem;
   font-weight: bold;
 

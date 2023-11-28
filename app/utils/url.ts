@@ -3,7 +3,7 @@ export const Url = {
   Korea: "https://kr.api.riotgames.com",
 };
 
-export const Locale = {
+export const affinity = {
   ko_KR: "ko-KR",
   kr: "kr",
 };
