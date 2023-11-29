@@ -60,3 +60,12 @@ interface RankType {
   competitiveTier: number;
   leaderboardRank: number;
 }
+
+interface WeaponSkinType {
+  cost: number;
+  name: string;
+  icon: string;
+  content_tier: {
+    icon: string;
+  };
+}

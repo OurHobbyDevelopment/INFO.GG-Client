@@ -39,7 +39,7 @@ export const GitHub = styled(Image)`
 `;
 
 export const Insta = styled(Image)`
-  width: 4rem;
+  width: 4.5rem;
   height: 3rem;
   cursor: pointer;
 `;

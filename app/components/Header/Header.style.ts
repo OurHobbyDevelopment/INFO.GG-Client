@@ -7,6 +7,7 @@ export const Header = styled.div`
   justify-content: center;
   height: 4rem;
   background-color: ${ValColor.valRed};
+  margin-bottom: 4rem;
 `;
 
 export const Nav = styled.div`

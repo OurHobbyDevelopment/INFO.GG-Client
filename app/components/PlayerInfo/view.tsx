@@ -1,7 +1,22 @@
-import { ValScore } from "@/app/api/valContent";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { SeeRank, ValScore } from "@/app/api/valContent";
 import * as S from "./PlayerInfo.style";
+
+const extractDateTime = (isoDateString: string) => {
+  const dateObject = new Date(isoDateString);
+
+  // 년-월-일 추출
+  const formattedDate = dateObject.toISOString().split("T")[0];
+
+  // 시간 추출
+  const formattedTime = dateObject.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  return { formattedDate, formattedTime };
+};
 
 export default function PlayerInfo({ data }: AccountType) {
   const [game, setGame] = useState<GameScoreType>();
@@ -11,6 +26,8 @@ export default function PlayerInfo({ data }: AccountType) {
     const fetchData = async () => {
       try {
         const res = await ValScore(data.puuid);
+        const res2 = await SeeRank(data.puuid);
+
         setTotal(res.data.results.total);
         setGame(res.data);
       } catch (error) {
@@ -33,23 +50,38 @@ export default function PlayerInfo({ data }: AccountType) {
           </div>
         </S.Profile>
         {game?.data?.map((e: ScoreType) => (
-          <div>
-            <hr />
-            <p>맵 : {e.meta.map?.name}</p>
-            <p>모드 : {e.meta.mode}</p>
-            <p>시즌 : {e.meta.season?.short}</p>
-            <p>시작 시간 : {e.meta.started_at}</p>
-            <p>어시스트 : {e.stats.assists}</p>
+          <S.ScoreBox key={e.meta.started_at}>
+            <S.Score>
+              <div>
+                <S.Mode>{e.meta.mode}</S.Mode>
+                <S.Date>
+                  {extractDateTime(e.meta.started_at).formattedDate}
+                </S.Date>
+                <S.Time>
+                  {extractDateTime(e.meta.started_at).formattedTime}
+                </S.Time>
+              </div>
+              <div>
+                <S.KillDeat>
+                  {e.stats.kills}&nbsp;/&nbsp;
+                  <S.Death>{e.stats.deaths}</S.Death>&nbsp;/&nbsp;
+                  {e.stats.assists}
+                </S.KillDeat>
+              </div>
+              <div>
+                <p>
+                  {e.teams.blue} : {e.teams.red}
+                </p>
+              </div>
+              {/* <p>맵 : {e.meta.map?.name}</p> */}
+              {/* <p>시즌 : {e.meta.season?.short}</p>
+
+   
             <p>요원 : {e.stats.character?.name}</p>
-            <p>사망 : {e.stats.deaths}</p>
-            <p>킬 : {e.stats.kills}</p>
-            <p>점수 : {e.stats.score}</p>
             <p>티어 : {e.stats.tier}</p>
-            <p>팀 : {e.stats.team}</p>
-            <p>블루 : {e.teams.blue}</p>
-            <p>레드 : {e.teams.red}</p>
-            <hr />
-          </div>
+            <p>팀 : {e.stats.team}</p> */}
+            </S.Score>
+          </S.ScoreBox>
         ))}
       </S.Text>
     </S.InfoBox>

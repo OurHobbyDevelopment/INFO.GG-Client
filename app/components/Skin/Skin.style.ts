@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const GridBox = styled.div`
   color: white;
@@ -13,5 +14,17 @@ export const Grid = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid black;
-  font-size: 24px;
+  font-size: 22px;
+`;
+
+export const Name = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Img = styled(Image)`
+  width: auto;
+  height: 30px;
+  border-radius: 50%;
 `;

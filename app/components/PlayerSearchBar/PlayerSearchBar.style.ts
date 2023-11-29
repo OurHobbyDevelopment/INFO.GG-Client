@@ -1,11 +1,18 @@
 import { ClickColor, HoverColor, ValColor } from "@/app/common/color";
 import styled, { css } from "styled-components";
 
-export const Box = styled.div`
+export const Box = styled.div<{ data: boolean }>`
   display: flex;
   justify-content: center;
 
   height: 12rem;
+
+  ${({ data }) =>
+    data
+      ? null
+      : css`
+          display: none;
+        `}
 `;
 
 export const SearchBox = styled.input`

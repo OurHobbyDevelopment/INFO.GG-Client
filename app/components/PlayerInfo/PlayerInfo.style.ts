@@ -11,6 +11,7 @@ export const Text = styled.div`
 
 export const Profile = styled.div`
   display: flex;
+  margin-bottom: 3rem;
 `;
 
 export const Card = styled.img`
@@ -24,4 +25,43 @@ export const Level = styled.p`
 export const Name = styled.p`
   font-size: 2rem;
   font-weight: 600;
+`;
+
+export const ScoreBox = styled.div`
+  /* background-color: red; */
+  height: 6rem;
+  margin-bottom: 5px;
+  padding: 20px;
+`;
+
+export const Score = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: blue; */
+  width: 70%;
+`;
+
+export const Mode = styled.p`
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 120%;
+`;
+
+export const Date = styled.p`
+  margin-bottom: 10px;
+`;
+
+export const Time = styled.p`
+  margin-bottom: 10px;
+`;
+
+export const KillDeat = styled.p`
+  display: flex;
+  font-size: 22px;
+  font-weight: 600;
+`;
+
+export const Death = styled.p`
+  color: red;
 `;

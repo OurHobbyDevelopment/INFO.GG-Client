@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import * as S from "./Skin.style";
 import { WeaponSkin } from "@/app/api/valContent";
-import Image from "next/image";
 
+import VP from "@/app/asset/png/vp.png";
 export const Skin = () => {
   const [weaponData, setWeaponData] = useState<any>();
-  const [cost, setCost] = useState<any>();
-  const [name, setName] = useState<any>();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await WeaponSkin();
         setWeaponData(res.data.data.offers);
-        console.log(res);
       } catch (error) {
         console.error("Error :", error);
       }
@@ -22,14 +20,23 @@ export const Skin = () => {
 
   return (
     <div>
-      {weaponData?.map((e: any) => {
-        console.log(e.cost > 975 && e);
+      {/* <WeaponSearch /> 나중에 (지금 굳이 필요없음)*/}
+      {weaponData?.map((e: WeaponSkinType) => {
         return (
           <S.GridBox>
             {e.cost > 975 && (
               <S.Grid>
-                {e.name} | {e.cost}
-                <img src={e.icon} alt="img" width={"auto"} height={60} />
+                <S.Name>
+                  <img
+                    src={e.content_tier.icon}
+                    alt="grade"
+                    width={"auto"}
+                    height={40}
+                  />
+                  {e.name} | <S.Img src={VP} alt="cash" />
+                  {e.cost}VP
+                </S.Name>
+                <img src={e.icon} alt="weaponSkin" width={"auto"} height={60} />
               </S.Grid>
             )}
           </S.GridBox>

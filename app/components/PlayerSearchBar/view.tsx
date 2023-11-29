@@ -17,6 +17,10 @@ export default function PlayerSearchBarView() {
   };
 
   const SearchRiotID = async () => {
+    if (RiotID == "") {
+      alert("유저이름을 작성해주세요");
+    }
+
     const [name, tag] = RiotID.split("#");
     const Account = await ValContent(name, tag);
     setIsOpen(false); //전적이 뜰때 검색창이 사라져야함
@@ -35,7 +39,7 @@ export default function PlayerSearchBarView() {
 
   return (
     <>
-      <S.Box>
+      <S.Box data={isOpen}>
         <S.SearchBox
           placeholder="Riot ID#태그 입력"
           onChange={WriteRiotID}

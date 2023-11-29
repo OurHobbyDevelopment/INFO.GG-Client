@@ -15,7 +15,7 @@ import { GotoBottomBtn } from "@/app/components/GotoBottomBtn/view";
 export default function PlayerSearch() {
   return (
     <Bg>
-      <Img src={bg} alt="bg" />
+      {/* <Img src={bg} alt="bg" /> */}
       <Header />
       <Title />
       <Footer />

@@ -4,10 +4,12 @@ import { AffinityList } from "./affinity";
 import { ValContent, ValRanking, ValScore } from "@/app/api/valContent";
 import { useRecoilState } from "recoil";
 import { GameData } from "@/app/recoil/GameData";
+import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export const Ranking = () => {
   const [rank, setRank] = useState<RankType[]>();
   const [gameData, setGameData] = useRecoilState(GameData);
+  const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +31,7 @@ export const Ranking = () => {
     if (name && tag) {
       const Account = await ValContent(name, tag);
       setGameData(Account.data);
+      setIsOpen(false);
     } else {
       alert("비공개 계정입니다.");
     }
