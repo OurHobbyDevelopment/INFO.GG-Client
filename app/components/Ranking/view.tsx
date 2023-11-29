@@ -8,6 +8,7 @@ import { GameData } from "@/app/recoil/GameData";
 export const Ranking = () => {
   const [rank, setRank] = useState<RankType[]>();
   const [gameData, setGameData] = useRecoilState(GameData);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,20 +29,23 @@ export const Ranking = () => {
     if (name && tag) {
       const Account = await ValContent(name, tag);
       setGameData(Account.data);
+    } else {
+      alert("비공개 계정입니다.");
     }
   };
 
   return (
     <S.RankingBox>
+      <S.Title>랭킹</S.Title>
       <S.Rank>
         {AffinityList.map(({ id, name }) => (
           <S.Grid key={id}>
-            <S.Title>
+            <S.Title2>
               {name}
               <S.Move>
                 <S.Link href="/pages/OverallRanking">전체보기</S.Link>
               </S.Move>
-            </S.Title>
+            </S.Title2>
             <S.Ranking>
               {rank?.slice(0, 5).map((e: RankType, index: number) => (
                 <S.Score key={index}>

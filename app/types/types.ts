@@ -46,6 +46,10 @@ interface ScoreType {
     team: string;
     tier: number;
   };
+  teams: {
+    blue: number;
+    red: number;
+  };
 }
 
 interface RankType {

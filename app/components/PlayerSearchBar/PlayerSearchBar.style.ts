@@ -1,5 +1,5 @@
 import { ClickColor, HoverColor, ValColor } from "@/app/common/color";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Box = styled.div`
   display: flex;

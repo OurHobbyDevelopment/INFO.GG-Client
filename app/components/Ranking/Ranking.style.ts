@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const RankingBox = styled.div`
   color: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Rank = styled.div`
@@ -23,7 +24,15 @@ export const Grid = styled.div`
   border-radius: 10px;
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
+  width: 58rem;
+  margin-bottom: 2rem;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+
+export const Title2 = styled.p`
   display: flex;
   align-items: center;
   color: ${ValColor.valRed};

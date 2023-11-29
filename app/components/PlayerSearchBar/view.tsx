@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ValContent } from "@/app/api/valContent";
-import PlayerInfo from "../PlayerInfo/view";
 
 import * as S from "./PlayerSearchBar.style";
 import { useRecoilState } from "recoil";
 import { GameData } from "@/app/recoil/GameData";
+import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export default function PlayerSearchBarView() {
   const [RiotID, setRiotID] = useState<string>("");
   const [gameData, setGameData] = useRecoilState(GameData);
+  const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
 
   const WriteRiotID = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRiotID(e.target.value);
@@ -18,7 +19,7 @@ export default function PlayerSearchBarView() {
   const SearchRiotID = async () => {
     const [name, tag] = RiotID.split("#");
     const Account = await ValContent(name, tag);
-
+    setIsOpen(false); //전적이 뜰때 검색창이 사라져야함
     setGameData(Account.data);
   };
 
@@ -31,6 +32,7 @@ export default function PlayerSearchBarView() {
   useEffect(() => {
     console.log(gameData);
   }, [gameData]);
+
   return (
     <>
       <S.Box>
