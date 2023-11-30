@@ -67,7 +67,7 @@ export const Ranking = () => {
                 ?.slice(0, 5)
                 .map((e: RankType, index: number) => (
                   <S.Score key={index}>
-                    {e.leaderboardRank}위 |
+                    {e.leaderboardRank}위 |&nbsp;
                     <S.UserName onClick={() => showPlayer(index, name)}>
                       {e.gameName
                         ? ` ${e.gameName}#${e.tagLine} `

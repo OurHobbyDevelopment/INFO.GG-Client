@@ -28,8 +28,6 @@ export default function PlayerInfo({ data }: AccountType) {
     const fetchData = async () => {
       try {
         const res = await ValScore(data.puuid);
-        console.log(res);
-        // const res3 = await SeeAgent(data.puuid);
         setTotal(res.data.results.total);
         setGame(res.data);
       } catch (error) {
@@ -52,7 +50,7 @@ export default function PlayerInfo({ data }: AccountType) {
           </div>
         </S.Profile>
         {game?.data?.map((e: ScoreType) => (
-          <S.ScoreBox key={e.meta.started_at}>
+          <S.ScoreBox key={e.meta.id}>
             <S.Score>
               <div>
                 <S.Mode>{e.meta.mode}</S.Mode>

@@ -25,6 +25,7 @@ interface GameScoreType {
 
 interface ScoreType {
   meta: {
+    id: string;
     map: {
       name: string;
     };
@@ -68,4 +69,5 @@ interface WeaponSkinType {
   content_tier: {
     icon: string;
   };
+  skin_id: string;
 }
