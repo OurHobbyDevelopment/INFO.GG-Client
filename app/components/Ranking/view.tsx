@@ -1,30 +1,43 @@
 import { useEffect, useState } from "react";
 import * as S from "./Ranking.style";
 import { AffinityList } from "./affinity";
-import { ValContent, ValRanking, ValScore } from "@/app/api/valContent";
+import { ValContent } from "@/app/api/valContent";
+import { ValRanking } from "@/app/api/valRanking";
 import { useRecoilState } from "recoil";
 import { GameData } from "@/app/recoil/GameData";
 import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export const Ranking = () => {
-  const [rank, setRank] = useState<RankType[]>();
+  const [rankings, setRankings] = useState<{ [key: string]: RankType[] }>({});
   const [gameData, setGameData] = useRecoilState(GameData);
   const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await ValRanking("kr");
-        setRank(res.data);
+        const regions = ["kr", "eu", "na", "latam", "br", "ap"];
+        const newRankings: any = {};
+
+        for (const region of regions) {
+          const response = await ValRanking(region);
+          newRankings[region] = response.data;
+        }
+
+        setRankings(newRankings);
       } catch (error) {
         console.error("Error :", error);
       }
     };
+
     fetchData();
   }, []);
 
-  const showPlayer = async (index: number) => {
-    const targetPlayer = rank?.[index];
+  const getRankingsByRegion = (region: string): RankType[] | undefined => {
+    return rankings[region];
+  };
+
+  const showPlayer = async (index: number, region: string) => {
+    const targetPlayer = getRankingsByRegion(region)?.[index];
     const name = targetPlayer?.gameName;
     const tag = targetPlayer?.tagLine;
 
@@ -50,16 +63,18 @@ export const Ranking = () => {
               </S.Move>
             </S.Title2>
             <S.Ranking>
-              {rank?.slice(0, 5).map((e: RankType, index: number) => (
-                <S.Score key={index}>
-                  {e.leaderboardRank}위 | &nbsp;
-                  <S.UserName onClick={() => showPlayer(index)}>
-                    {e.gameName
-                      ? ` ${e.gameName}#${e.tagLine} `
-                      : " 비공개 유저"}
-                  </S.UserName>
-                </S.Score>
-              ))}
+              {getRankingsByRegion(name)
+                ?.slice(0, 5)
+                .map((e: RankType, index: number) => (
+                  <S.Score key={index}>
+                    {e.leaderboardRank}위 |
+                    <S.UserName onClick={() => showPlayer(index, name)}>
+                      {e.gameName
+                        ? ` ${e.gameName}#${e.tagLine} `
+                        : " 비공개 유저"}
+                    </S.UserName>
+                  </S.Score>
+                ))}
             </S.Ranking>
           </S.Grid>
         ))}

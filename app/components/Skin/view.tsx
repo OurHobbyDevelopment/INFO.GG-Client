@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import * as S from "./Skin.style";
-import { WeaponSkin } from "@/app/api/valContent";
 
 import VP from "@/app/asset/png/vp.png";
+import { WeaponSkin } from "@/app/api/ValWeapon";
 export const Skin = () => {
   const [weaponData, setWeaponData] = useState<any>();
 
