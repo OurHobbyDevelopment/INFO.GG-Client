@@ -1,4 +1,3 @@
-"use client";
 import { ValColor } from "@/app/common/color";
 import Header from "@/app/components/Header/view";
 import Title from "@/app/components/Title/view";

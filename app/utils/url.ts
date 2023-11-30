@@ -9,5 +9,5 @@ export const affinity = {
 };
 
 export const ClientUrl = {
-  MainUrl: "http://localhost:3000/pages/PlayerSearch",
+  MainUrl: "/pages/PlayerSearch",
 };
