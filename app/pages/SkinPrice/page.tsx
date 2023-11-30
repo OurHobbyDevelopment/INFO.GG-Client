@@ -1,3 +1,4 @@
+"use client";
 import { ValColor } from "@/app/common/color";
 
 import { Skin } from "@/app/components/Skin/view";
@@ -7,12 +8,14 @@ import Footer from "@/app/components/Footer/view";
 
 import styled from "styled-components";
 
+import bg from "../../asset/png/bg.png";
 import Image from "next/image";
 import { GotoBottomBtn } from "@/app/components/GotoBottomBtn/view";
 
 export default function PlayerSearch() {
   return (
     <Bg>
+      {/* <Img src={bg} alt="bg" /> */}
       <Header />
       <Title />
       <Footer />
