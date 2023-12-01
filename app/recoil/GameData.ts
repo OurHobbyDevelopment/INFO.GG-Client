@@ -9,3 +9,8 @@ export const Weapon = atom<string>({
   key: "weaponName",
   default: "",
 });
+
+export const RegionRank = atom<string>({
+  key: "regionRank",
+  default: "",
+});

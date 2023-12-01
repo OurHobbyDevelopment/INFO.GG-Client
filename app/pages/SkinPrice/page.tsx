@@ -8,7 +8,6 @@ import Footer from "@/app/components/Footer/view";
 
 import styled from "styled-components";
 
-import bg from "../../asset/png/bg.png";
 import Image from "next/image";
 import { GotoBottomBtn } from "@/app/components/GotoBottomBtn/view";
 

@@ -11,9 +11,9 @@ export const ValContent = async (name: string, tag: string) => {
   return res;
 };
 
-export const SeeAgent = async (puuid: string) => {
+export const SeeAgent = async (region: string, name: string, tag: string) => {
   const res = await axios.get(
-    `https://api.henrikdev.xyz/valorant/v3/by-puuid/matches/${affinity.kr}/${puuid}`
+    `https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${name}/${tag}`
   );
   if (res.status != 200) {
     console.log(`errno ${res.status}`);

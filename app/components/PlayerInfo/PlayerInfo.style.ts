@@ -11,7 +11,7 @@ export const Text = styled.div`
 
 export const Profile = styled.div`
   display: flex;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const Card = styled.img`
@@ -25,10 +25,10 @@ export const Level = styled.p`
 export const Name = styled.p`
   font-size: 2rem;
   font-weight: 600;
+  margin: 10px;
 `;
 
 export const ScoreBox = styled.div`
-  /* background-color: red; */
   height: 6rem;
   margin-bottom: 5px;
   padding: 20px;
@@ -38,7 +38,6 @@ export const Score = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: blue; */
   width: 70%;
 `;
 

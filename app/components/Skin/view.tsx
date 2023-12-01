@@ -37,7 +37,7 @@ export const Skin = () => {
                   {e.name} | <S.Img src={VP} alt="cash" />
                   {e.cost}VP
                 </S.Name>
-                <Image src={e.icon} alt="weaponSkin" width={220} height={70} />
+                <Image src={e.icon} alt="weaponSkin" width={180} height={60} />
               </S.Grid>
             )}
           </S.GridBox>

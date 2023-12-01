@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { SeeAgent } from "@/app/api/valContent";
-import { SeeRank } from "@/app/api/valRanking";
 import { ValScore } from "@/app/api/valRanking";
 import * as S from "./PlayerInfo.style";
+import { SeeAgent } from "@/app/api/valContent";
+
+import Image from "next/image";
+import { ShowTier } from "../ShowTier/view";
+import { useRecoilValue } from "recoil";
+import { RegionRank } from "@/app/recoil/GameData";
 
 const extractDateTime = (isoDateString: string) => {
   const dateObject = new Date(isoDateString);
@@ -23,11 +27,16 @@ const extractDateTime = (isoDateString: string) => {
 export default function PlayerInfo({ data }: AccountType) {
   const [game, setGame] = useState<GameScoreType>();
   const [total, setTotal] = useState<number>(0);
+  const [playerInfo, setPlayerInfo] = useState<any>();
+  const region = useRecoilValue(RegionRank);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await ValScore(data.puuid);
+        const res2 = await SeeAgent(region, data.name, data.tag); // add name
+
+        setPlayerInfo(res2.data.data);
         setTotal(res.data.results.total);
         setGame(res.data);
       } catch (error) {
@@ -49,6 +58,7 @@ export default function PlayerInfo({ data }: AccountType) {
             </S.Name>
           </div>
         </S.Profile>
+        <ShowTier playerInfo={playerInfo} />
         {game?.data?.map((e: ScoreType) => (
           <S.ScoreBox key={e.meta.id}>
             <S.Score>

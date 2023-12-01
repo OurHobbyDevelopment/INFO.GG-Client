@@ -4,13 +4,14 @@ import { AffinityList } from "./affinity";
 import { ValContent } from "@/app/api/valContent";
 import { ValRanking } from "@/app/api/valRanking";
 import { useRecoilState } from "recoil";
-import { GameData } from "@/app/recoil/GameData";
+import { GameData, RegionRank } from "@/app/recoil/GameData";
 import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export const Ranking = () => {
   const [rankings, setRankings] = useState<{ [key: string]: RankType[] }>({});
   const [gameData, setGameData] = useRecoilState(GameData);
   const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
+  const [region, setRegion] = useRecoilState(RegionRank);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,7 @@ export const Ranking = () => {
   };
 
   const showPlayer = async (index: number, region: string) => {
+    setRegion(region);
     const targetPlayer = getRankingsByRegion(region)?.[index];
     const name = targetPlayer?.gameName;
     const tag = targetPlayer?.tagLine;
