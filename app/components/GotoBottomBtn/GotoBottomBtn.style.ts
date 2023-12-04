@@ -14,7 +14,10 @@ export const BottomBtn = styled.button`
   align-items: center;
   font-weight: 600;
   border-radius: 50%;
+  border: none;
   font-size: 16px;
+  z-index: 1;
+  border: none;
   cursor: pointer;
   &:hover {
     background-color: ${HoverColor.valRed};

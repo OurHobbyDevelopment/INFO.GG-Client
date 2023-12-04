@@ -22,6 +22,7 @@ export const Title = styled.p`
   font-size: 16px;
   font-weight: 600;
   border-top-left-radius: 15px;
+  margin-bottom: 30px;
 `;
 export const TierTxt = styled.p`
   margin-top: 10px;

@@ -13,9 +13,7 @@ import { IsOpen } from "../IsOpen/view";
 export default function Footer() {
   const [isOpen, setIsOpen] = useRecoilState(FooterIsOpen);
 
-  const close = () => {
-    setIsOpen(false);
-  };
+  const close = () => setIsOpen(false);
 
   return (
     <>

@@ -9,3 +9,8 @@ export const SearchIsOpen = atom<boolean>({
   key: "SearchClose",
   default: true,
 });
+
+export const ModalIsOpen = atom<string>({
+  key: "ModalOpen",
+  default: "",
+});

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ShowTier } from "../ShowTier/view";
 import { useRecoilValue } from "recoil";
 import { RegionRank } from "@/app/recoil/GameData";
+import { GotoBottomBtn } from "../GotoBottomBtn/view";
 
 const extractDateTime = (isoDateString: string) => {
   const dateObject = new Date(isoDateString);
@@ -35,7 +36,7 @@ export default function PlayerInfo({ data }: AccountType) {
       try {
         const res = await ValScore(data.puuid);
         const res2 = await SeeAgent(region, data.name, data.tag); // add name
-
+        console.log(res);
         setPlayerInfo(res2.data.data);
         setTotal(res.data.results.total);
         setGame(res.data);
@@ -90,6 +91,7 @@ export default function PlayerInfo({ data }: AccountType) {
             <p>요원 : {e.stats.character?.name}</p>
             <p>티어 : {e.stats.tier}</p>
             <p>팀 : {e.stats.team}</p> */}
+              <GotoBottomBtn />
             </S.Score>
           </S.ScoreBox>
         ))}

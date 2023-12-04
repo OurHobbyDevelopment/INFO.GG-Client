@@ -23,7 +23,7 @@ export default function PlayerSearchBarView() {
 
     const [name, tag] = RiotID.split("#");
     const Account = await ValContent(name, tag);
-    console.log(Account);
+
     setIsOpen(false); //전적이 뜰때 검색창이 사라져야함
     setGameData(Account.data);
     setRegion(Account.data.data.region);

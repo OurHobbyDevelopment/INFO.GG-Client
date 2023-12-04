@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import Image from "next/image";
 import Footer from "@/app/components/Footer/view";
+import { CreateBtn } from "@/app/components/CreateBtn/view";
 
 export default function PlayerSearch() {
   return (
@@ -14,6 +15,7 @@ export default function PlayerSearch() {
       {/* <Img src={bg} alt="bg" /> */}
       <Header />
       <Title />
+      <CreateBtn />
       <Footer />
     </Bg>
   );

@@ -3,7 +3,7 @@ import { affinity } from "../utils/url";
 
 export const ValScore = async (puuid: string) => {
   const res = await axios.get(
-    `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/${affinity.kr}/${puuid}?mode=competitive`
+    `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/${affinity.kr}/${puuid}`
   );
   if (res.status != 200) {
     console.log(`errno ${res.status}`);
@@ -13,7 +13,7 @@ export const ValScore = async (puuid: string) => {
 
 export const ValRanking = async (affinity: string) => {
   const res = await axios.get(
-    `https://api.henrikdev.xyz/valorant/v1/leaderboard/${affinity}` 
+    `https://api.henrikdev.xyz/valorant/v1/leaderboard/${affinity}`
   );
   if (res.status != 200) {
     console.log(`errno ${res.status}`);
