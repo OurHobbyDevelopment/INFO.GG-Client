@@ -3,7 +3,6 @@ import { ValScore } from "@/app/api/valRanking";
 import * as S from "./PlayerInfo.style";
 import { SeeAgent } from "@/app/api/valContent";
 
-import Image from "next/image";
 import { ShowTier } from "../ShowTier/view";
 import { useRecoilValue } from "recoil";
 import { RegionRank } from "@/app/recoil/GameData";

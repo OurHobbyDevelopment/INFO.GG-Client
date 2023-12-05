@@ -3,6 +3,7 @@ import FileDnD from "../../FileDnD/view";
 import * as S from "./AddModal.style";
 import { ModalIsOpen } from "@/app/recoil/IsOpen";
 import { useState } from "react";
+import { getAimPoint } from "@/app/api/ValAimPoint";
 
 export const AddModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(ModalIsOpen);
@@ -15,11 +16,13 @@ export const AddModal = () => {
 
   const Apply = () => {
     if (aimPoint != "") {
+      getAimPoint(aimPoint);
       setIsOpen("");
     } else {
       alert("조준점 코드를 넣어주세요");
     }
   };
+
   return (
     <>
       <S.Bg onClick={Close}></S.Bg>

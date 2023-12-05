@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Footer from "@/app/components/Footer/view";
 import { CreateBtn } from "@/app/components/CreateBtn/view";
+import { AimGrid } from "@/app/components/AimGrid/view";
 
 export default function PlayerSearch() {
   return (
@@ -16,6 +17,7 @@ export default function PlayerSearch() {
       <Header />
       <Title />
       <CreateBtn />
+      <AimGrid />
       <Footer />
     </Bg>
   );
@@ -23,8 +25,6 @@ export default function PlayerSearch() {
 
 const Bg = styled.body`
   background-color: ${ValColor.black};
-
-  overflow: hidden;
 `;
 
 const Img = styled(Image)`
