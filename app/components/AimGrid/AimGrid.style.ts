@@ -9,7 +9,7 @@ export const AimGridBox = styled.div`
   display: grid;
   place-items: center;
   width: 60rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   row-gap: 30px;
 `;
 
@@ -23,6 +23,7 @@ export const AimGrid = styled.div`
 
   cursor: pointer;
   transition: all 0.2s;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -45,4 +46,9 @@ export const Code = styled.div`
   font-weight: 600;
   /* background-color: white; */
   height: 20%;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
 `;

@@ -61,7 +61,7 @@ export const Ranking = () => {
             <S.Title2>
               {name}
               <S.Move>
-                <S.Link href="/pages/OverallRanking">전체보기</S.Link>
+                <S.Text>Top 5</S.Text>
               </S.Move>
             </S.Title2>
             <S.Ranking>

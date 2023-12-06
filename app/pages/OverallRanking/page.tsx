@@ -8,6 +8,7 @@ import styled from "styled-components";
 import bg from "../../asset/png/bg.png";
 import Image from "next/image";
 import Footer from "@/app/components/Footer/view";
+import { Overall } from "@/app/components/Ranking/Overall/view";
 
 export default function PlayerSearch() {
   return (
@@ -15,6 +16,7 @@ export default function PlayerSearch() {
       <Img src={bg} alt="bg" />
       <Header />
       <Title />
+      <Overall />
       <Footer />
     </Bg>
   );

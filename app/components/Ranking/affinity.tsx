@@ -1,7 +1,7 @@
 export const AffinityList = [
   {
     id: 1,
-    name: "eu",
+    name: "kr",
   },
   {
     id: 2,
@@ -21,6 +21,6 @@ export const AffinityList = [
   },
   {
     id: 6,
-    name: "kr",
+    name: "eu",
   },
 ];

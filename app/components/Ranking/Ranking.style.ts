@@ -63,9 +63,10 @@ export const Score = styled.p`
   font-size: 14px;
 `;
 
-export const Link = styled.a`
-  text-decoration: none;
+export const Text = styled.p`
+  /* text-decoration: none; */
   color: white;
+  font-size: 18px;
 `;
 
 export const UserName = styled.p`

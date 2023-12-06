@@ -19,4 +19,9 @@ export const HeaderList = [
     name: "꿀팁",
     addr: "/pages/tips",
   },
+  {
+    id: 5,
+    name: "랭킹",
+    addr: "/pages/OverallRanking",
+  },
 ];

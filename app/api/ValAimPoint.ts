@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export const getAimPoint = (aimPoint: string) => {
+export const getAimPoint = (
+  aimPoint: string,
+  title: string /**img: string*/
+) => {
   return axios
     .get("http://localhost:4000/aimpoint", {
       params: {
         code: aimPoint,
+        title: title,
+        // img: img,
       },
     })
     .then((res) => {

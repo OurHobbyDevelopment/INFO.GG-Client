@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
-export const Container = styled.div`
+import styled, { css } from "styled-components";
+export const Container = styled.label`
   align-items: center;
 
   display: flex;
@@ -16,23 +15,26 @@ export const FileInput = styled.input`
   display: none;
 `;
 
-export const PreviewLabel = styled.label`
+export const PreviewLabel = styled.label<{ state: boolean }>`
   width: 300px;
   height: 200px;
   margin: auto;
-  background-color: #fff;
   border-radius: 5px;
   border: 3px dashed #eee;
+  background-color: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    border-color: #111;
-    opacity: 0.8;
-  }
+  ${({ state }) =>
+    state
+      ? css`
+          background-color: #efeef3;
+          border-color: #111;
+        `
+      : null}
 `;
 
 export const PreviewMessage = styled.p`
@@ -44,4 +46,9 @@ export const PreviewMessage = styled.p`
 export const PreviewDescription = styled.p`
   margin: 0;
   font-size: 12px;
+`;
+
+export const ImagePreview = styled.img`
+  width: 100%;
+  height: 100%;
 `;

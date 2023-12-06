@@ -53,14 +53,17 @@ export const Modal = styled.div`
   color: white;
   font-size: 20px;
   font-weight: 600;
-  height: 20%;
+  height: 15%;
 `;
 
 export const AimBox = styled.div`
   height: 20%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 20px;
+  row-gap: 10px;
 `;
 
 export const AimCode = styled.input`

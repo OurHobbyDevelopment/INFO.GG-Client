@@ -80,7 +80,13 @@ export default function PlayerInfo({ data }: AccountType) {
               </div>
               <div>
                 <p>
-                  {e.teams.blue} : {e.teams.red}
+                  {e.teams.blue == null ? (
+                    <div>없음</div>
+                  ) : (
+                    <div>
+                      {e.teams.blue} : {e.teams.red}
+                    </div>
+                  )}
                 </p>
               </div>
               {/* <p>맵 : {e.meta.map?.name}</p> */}

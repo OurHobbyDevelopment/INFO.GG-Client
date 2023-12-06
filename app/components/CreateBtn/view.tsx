@@ -2,10 +2,15 @@ import { useRecoilState } from "recoil";
 import * as S from "./CreateBtn.style";
 import { ModalIsOpen } from "@/app/recoil/IsOpen";
 import { AddModal } from "../Modal/AddModal/view";
+import { aimImg } from "@/app/recoil/AimData";
 
 export const CreateBtn = () => {
   const [isOpen, setIsOpen] = useRecoilState(ModalIsOpen);
-  const Open = () => setIsOpen("addModalOpen");
+  const [previewUrl, setPreviewUrl] = useRecoilState(aimImg);
+  const Open = () => {
+    setIsOpen("addModalOpen");
+    setPreviewUrl("");
+  };
 
   return (
     <S.CreateBtnBox>
