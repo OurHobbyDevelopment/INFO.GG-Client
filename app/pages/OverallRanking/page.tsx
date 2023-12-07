@@ -9,14 +9,17 @@ import bg from "../../asset/png/bg.png";
 import Image from "next/image";
 import Footer from "@/app/components/Footer/view";
 import { Overall } from "@/app/components/Ranking/Overall/view";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { GameData } from "@/app/recoil/GameData";
+import PlayerInfo from "@/app/components/PlayerInfo/view";
 
 export default function PlayerSearch() {
+  const gameData = useRecoilValue(GameData);
   return (
     <Bg>
       <Img src={bg} alt="bg" />
       <Header />
-      <Title />
-      <Overall />
+      {gameData?.data ? <PlayerInfo data={gameData.data} /> : <Overall />}
       <Footer />
     </Bg>
   );

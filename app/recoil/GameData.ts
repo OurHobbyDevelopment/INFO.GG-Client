@@ -11,6 +11,6 @@ export const Weapon = atom<string>({
 });
 
 export const RegionRank = atom<string>({
-  key: "regionRank",
+  key: "region",
   default: "",
 });

@@ -6,14 +6,6 @@ export const ShowTier = ({ playerInfo }: any) => {
   return (
     <S.TierBox>
       <S.Title>티어</S.Title>
-      {/* <S.Select>
-        <S.Episode>
-          <option>에피소드</option>
-        </S.Episode>
-        <S.Act>
-          <option>액트</option>
-        </S.Act>
-      </S.Select> */}
       <S.Container>
         {playerInfo?.images.large ? (
           <>

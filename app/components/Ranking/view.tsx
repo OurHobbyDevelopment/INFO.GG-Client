@@ -23,7 +23,6 @@ export const Ranking = () => {
           const response = await ValRanking(region);
           newRankings[region] = response.data;
         }
-
         setRankings(newRankings);
       } catch (error) {
         console.error("Error :", error);
@@ -31,7 +30,7 @@ export const Ranking = () => {
     };
 
     fetchData();
-  }, []);
+  }, [region]);
 
   const getRankingsByRegion = (region: string): RankType[] | undefined => {
     return rankings[region];

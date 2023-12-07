@@ -12,7 +12,7 @@ export const Rank = styled.div`
   display: grid;
   place-items: center;
   width: 60rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 `;
 
 export const Grid = styled.div`

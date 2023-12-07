@@ -27,3 +27,13 @@ export const seeAimPoint = async () => {
   }
   return res;
 };
+
+export const showAimPointImg = async (code: string) => {
+  const res = await axios.get(
+    `https://api.henrikdev.xyz/valorant/v1/crosshair/generate?id=${code}`
+  );
+  if (res.status != 200) {
+    console.log(`errno ${res.status}`);
+  }
+  return res;
+};

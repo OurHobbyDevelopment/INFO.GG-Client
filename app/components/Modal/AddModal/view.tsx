@@ -3,13 +3,15 @@ import FileDnD from "../../FileDnD/view";
 import * as S from "./AddModal.style";
 import { ModalIsOpen } from "@/app/recoil/IsOpen";
 import { useState } from "react";
-import { getAimPoint } from "@/app/api/ValAimPoint";
+import { getAimPoint, showAimPointImg } from "@/app/api/ValAimPoint";
 import { aimImg } from "@/app/recoil/AimData";
 
 export const AddModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(ModalIsOpen);
   const [aimPoint, setAimPoint] = useState("");
   const [aimName, setAimName] = useState("");
+  const [imgs, setImgs] = useState();
+  const img = useRecoilValue(aimImg);
 
   const Close = () => {
     setIsOpen("");
@@ -24,6 +26,8 @@ export const AddModal = () => {
   };
   const Apply = () => {
     if (aimPoint != "") {
+      // const res = showAimPointImg(aimPoint); 잠시 보류(조준선 이미지)
+
       getAimPoint(aimPoint, aimName);
       setIsOpen("");
     } else {
