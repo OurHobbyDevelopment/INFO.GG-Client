@@ -1,9 +1,8 @@
 import * as S from "./List.style";
 import { AffinityList } from "../Ranking/affinity";
 
-import { RecoilValueReadOnly, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectContry } from "@/app/recoil/ContryData";
-import { useEffect } from "react";
 
 export const List = () => {
   const [contry, setContry] = useRecoilState(selectContry);

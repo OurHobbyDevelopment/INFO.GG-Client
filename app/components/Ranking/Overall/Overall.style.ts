@@ -1,5 +1,5 @@
 import { ValColor } from "@/app/common/color";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const OverallBox = styled.div`
   color: white;
@@ -31,6 +31,16 @@ export const Ranking = styled.div`
   width: 60rem;
 `;
 
+export const Empty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 24px;
+  opacity: 0.7;
+  height: 20rem;
+`;
+
 export const PlayerInfo = styled.div`
   display: flex;
   align-items: center;
@@ -39,10 +49,28 @@ export const PlayerInfo = styled.div`
   height: 6rem;
 `;
 
-export const GameName = styled.div`
-  transition: 0.1s;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
+export const Rank = styled.div`
+  width: 3rem;
+`;
+
+export const GameName = styled.div<{ name: string }>`
+  width: 18rem;
+  font-size: 15px;
+  ${({ name }) =>
+    name == ""
+      ? null
+      : css`
+          &:hover {
+            opacity: 0.5;
+          }
+          transition: 0.1s;
+          cursor: pointer;
+        `}
+`;
+
+export const Tier = styled.div`
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

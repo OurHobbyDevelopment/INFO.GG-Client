@@ -25,8 +25,7 @@ const extractDateTime = (isoDateString: string) => {
 };
 
 export default function PlayerInfo({ data }: AccountType) {
-  // const [game, setGame] = useState<GameScoreType>();
-  const [game, setGame] = useState<any>();
+  const [game, setGame] = useState<GameScoreType>();
   const [total, setTotal] = useState<number>(0);
   const [playerInfo, setPlayerInfo] = useState<any>();
   const [whoWin, setWhoWin] = useState<string>("");
@@ -38,6 +37,7 @@ export default function PlayerInfo({ data }: AccountType) {
       try {
         const res = await ValScore(data.puuid);
         const res2 = await SeeAgent(region, data.name, data.tag); // add name
+        console.log(res2);
         setPlayerInfo(res2.data.data);
         setTotal(res.data.results.total);
         setGame(res.data);
