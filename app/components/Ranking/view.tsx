@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import * as S from "./Ranking.style";
 import { AffinityList } from "./affinity";
 import { ValContent } from "@/app/api/valContent";
-import { ValRanking } from "@/app/api/valRanking";
+import { ValRanking, WinnerRate } from "@/app/api/valRanking";
 import { useRecoilState } from "recoil";
-import { GameData, RegionRank } from "@/app/recoil/GameData";
+import { GameData, RegionRank, WinRate } from "@/app/recoil/GameData";
 import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export const Ranking = () => {
@@ -12,6 +12,7 @@ export const Ranking = () => {
   const [gameData, setGameData] = useRecoilState(GameData);
   const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
   const [region, setRegion] = useRecoilState(RegionRank);
+  const [win, setWin] = useRecoilState(WinRate);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +45,9 @@ export const Ranking = () => {
 
     if (name && tag) {
       const Account = await ValContent(name, tag);
+      const winRate = await WinnerRate(name, tag);
+
+      setWin(winRate?.data?.data?.by_season);
       setGameData(Account.data);
       setIsOpen(false);
     } else {
@@ -69,7 +73,10 @@ export const Ranking = () => {
                 .map((e: RankType, index: number) => (
                   <S.Score key={index}>
                     {e.leaderboardRank}위 |&nbsp;
-                    <S.UserName onClick={() => showPlayer(index, name)}>
+                    <S.UserName
+                      onClick={() => showPlayer(index, name)}
+                      name={e.gameName}
+                    >
                       {e.gameName
                         ? ` ${e.gameName}#${e.tagLine} `
                         : " 비공개 유저"}

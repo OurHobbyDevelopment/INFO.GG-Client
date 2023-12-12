@@ -9,7 +9,7 @@ export const ShowTier = ({ playerInfo }: any) => {
 
   return (
     <S.TierBox>
-      <S.Title>티어</S.Title>
+      <S.Title>경쟁전</S.Title>
       <S.Container>
         {playerInfo?.images.large ? (
           <>
@@ -29,10 +29,10 @@ export const ShowTier = ({ playerInfo }: any) => {
 
         <div>
           <S.TierTxt>{playerInfo?.currenttierpatched}</S.TierTxt>
-          {playerInfo?.ranking_in_tier ? (
+          {playerInfo?.ranking_in_tier >= 0 ? (
             <>
               <S.Score>
-                <>{playerInfo?.ranking_in_tier}점</>
+                <>{playerInfo?.ranking_in_tier}LP</>
               </S.Score>
               <S.Record>
                 {winnerRate?.["e7a3"].number_of_games}전&nbsp;

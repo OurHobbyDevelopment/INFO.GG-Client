@@ -1,5 +1,5 @@
 import { ValColor } from "@/app/common/color";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const RankingBox = styled.div`
   color: white;
@@ -69,10 +69,15 @@ export const Text = styled.p`
   font-size: 18px;
 `;
 
-export const UserName = styled.p`
-  transition: 0.1s;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
+export const UserName = styled.p<{ name: string }>`
+  ${({ name }) =>
+    name == ""
+      ? null
+      : css`
+          &:hover {
+            opacity: 0.5;
+          }
+          transition: 0.1s;
+          cursor: pointer;
+        `}
 `;

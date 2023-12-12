@@ -5,7 +5,12 @@ import { WinnerRate } from "@/app/api/valRanking";
 
 import * as S from "./PlayerSearchBar.style";
 import { useRecoilState } from "recoil";
-import { GameData, RegionRank, WinRate } from "@/app/recoil/GameData";
+import {
+  GameData,
+  RegionRank,
+  UpdateState,
+  WinRate,
+} from "@/app/recoil/GameData";
 import { SearchIsOpen } from "@/app/recoil/IsOpen";
 
 export default function PlayerSearchBarView() {
@@ -14,6 +19,7 @@ export default function PlayerSearchBarView() {
   const [isOpen, setIsOpen] = useRecoilState(SearchIsOpen);
   const [region, setRegion] = useRecoilState(RegionRank);
   const [win, setWin] = useRecoilState(WinRate);
+  const [update, setUpdate] = useRecoilState(UpdateState);
 
   const WriteRiotID = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRiotID(e.target.value);
@@ -25,7 +31,7 @@ export default function PlayerSearchBarView() {
     }
 
     const [name, tag] = RiotID.split("#");
-    const Account = await ValContent(name, tag);
+    const Account = await ValContent(name, tag, update);
     const winRate = await WinnerRate(name, tag);
 
     setWin(winRate?.data?.data?.by_season);

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const TierBox = styled.div`
   background-color: #2d3245;
-  height: 15rem;
-  width: 25%;
+  height: 14.5rem;
+  width: 14rem;
   margin-bottom: 1.5rem;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -51,8 +51,8 @@ export const Act = styled.select`
 
 export const Container = styled.div`
   display: flex;
+  justify-content: center;
   padding-top: 20px;
-  padding-left: 20px;
   width: 100%;
   height: 100%;
 `;

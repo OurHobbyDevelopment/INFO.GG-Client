@@ -8,8 +8,8 @@ const getApiData = async (url: string) => {
   return res;
 };
 
-export const ValContent = (name: string, tag: string) => {
-  const url = `https://api.henrikdev.xyz/valorant/v1/account/${name}/${tag}?force=true`;
+export const ValContent = (name: string, tag: string, update: boolean) => {
+  const url = `https://api.henrikdev.xyz/valorant/v1/account/${name}/${tag}?force=false`;
   return getApiData(url);
 };
 
