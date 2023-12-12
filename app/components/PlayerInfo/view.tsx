@@ -5,7 +5,7 @@ import { SeeAgent } from "@/app/api/valContent";
 
 import { ShowTier } from "../ShowTier/view";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { RegionRank } from "@/app/recoil/GameData";
+import { RegionRank, WinRate } from "@/app/recoil/GameData";
 import { GotoBottomBtn } from "../GotoBottomBtn/view";
 
 const extractDateTime = (isoDateString: string) => {
@@ -28,16 +28,14 @@ export default function PlayerInfo({ data }: AccountType) {
   const [game, setGame] = useState<GameScoreType>();
   const [total, setTotal] = useState<number>(0);
   const [playerInfo, setPlayerInfo] = useState<any>();
-  const [whoWin, setWhoWin] = useState<string>("");
   const region = useRecoilValue(RegionRank);
-  let arr: any = [];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await ValScore(data.puuid);
         const res2 = await SeeAgent(region, data.name, data.tag); // add name
-        console.log(res2);
+
         setPlayerInfo(res2.data.data);
         setTotal(res.data.results.total);
         setGame(res.data);
@@ -48,25 +46,27 @@ export default function PlayerInfo({ data }: AccountType) {
     fetchData();
   }, [data.puuid]);
 
+  const [arr, setArr] = useState<string[]>([]);
+
   useEffect(() => {
     game?.data.map((e: any) => {
       if (e.teams.red > e.teams.blue) {
         let red = "Red";
         if (red == e.stats.team) {
-          arr.push("승리");
+          setArr((prevArr) => [...prevArr, "승리"]);
         } else {
-          arr.push("패배");
+          setArr((prevArr) => [...prevArr, "패배"]);
         }
       } else if (e.teams.red < e.teams.blue) {
         let blue = "Blue";
         if (blue == e.stats.team) {
-          arr.push("승리");
+          setArr((prevArr) => [...prevArr, "승리"]);
         } else {
-          arr.push("패배");
+          setArr((prevArr) => [...prevArr, "패배"]);
         }
       }
     });
-  });
+  }, [game]);
 
   return (
     <S.InfoBox>

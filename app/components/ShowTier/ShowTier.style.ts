@@ -61,3 +61,8 @@ export const Score = styled.div`
   font-size: 20px;
   font-weight: 600;
 `;
+
+export const Record = styled.div`
+  font-size: 16px;
+  margin-top: 10px;
+`;

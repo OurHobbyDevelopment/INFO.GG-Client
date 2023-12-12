@@ -46,16 +46,17 @@ export const PlayerInfo = styled.div`
   align-items: center;
   padding-left: 20px;
   border-bottom: 2px solid gray;
-  height: 6rem;
+  height: 4rem;
 `;
 
 export const Rank = styled.div`
-  width: 3rem;
+  width: 4rem;
+  font-size: 15px;
 `;
 
 export const GameName = styled.div<{ name: string }>`
-  width: 18rem;
-  font-size: 15px;
+  width: 16rem;
+  font-size: 13px;
   ${({ name }) =>
     name == ""
       ? null
@@ -71,6 +72,6 @@ export const GameName = styled.div<{ name: string }>`
 export const Tier = styled.div`
   width: 20rem;
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
 `;

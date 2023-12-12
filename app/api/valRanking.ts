@@ -30,3 +30,13 @@ export const SeeRank = async (puuid: string) => {
   }
   return res;
 };
+
+export const WinnerRate = async (name: string, tag: string) => {
+  const res = await axios.get(
+    `https://api.henrikdev.xyz/valorant/v2/mmr/kr/${name}/${tag}`
+  );
+  if (res.status != 200) {
+    console.log(`errno ${res.status}`);
+  }
+  return res;
+};

@@ -14,3 +14,8 @@ export const RegionRank = atom<string>({
   key: "region",
   default: "",
 });
+
+export const WinRate = atom<any | undefined>({
+  key: "winRate",
+  default: undefined,
+});
