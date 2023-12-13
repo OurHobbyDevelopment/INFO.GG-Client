@@ -13,7 +13,9 @@ export const HoverColor = {
 };
 
 export const winLoseColor = {
-  valBlue: "#405d9c",
-  valDeepBlue: "#324d87",
-  valRed: "#8c3848",
+  valWin: "#405d9c",
+  valDeepWin: "#324d87",
+  valLose: "#8c3848",
+  valDeepLose: "#692935",
+  valDeathMatch: "#00d672",
 };

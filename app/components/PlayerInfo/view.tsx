@@ -1,14 +1,15 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ValScore } from "@/app/api/valRanking";
 import * as S from "./PlayerInfo.style";
 import { SeeAgent, ValContent } from "@/app/api/valContent";
 
 import { ShowTier } from "../ShowTier/view";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { RegionRank, UpdateState, WinRate } from "@/app/recoil/GameData";
+import { useRecoilState } from "recoil";
+import { GameData, RegionRank } from "@/app/recoil/GameData";
 import { GotoBottomBtn } from "../GotoBottomBtn/view";
 import Image from "next/image";
 import More from "@/app/asset/png/more.png";
+import { SeasonList } from "../List/SeasonList/view";
 
 const extractDateTime = (isoDateString: string) => {
   const dateObject = new Date(isoDateString);
@@ -32,8 +33,8 @@ export default function PlayerInfo({ data }: AccountType) {
   const [total, setTotal] = useState<number>(0);
   const [playerInfo, setPlayerInfo] = useState<any>();
   const [arr, setArr] = useState<string[]>([]);
-  const [update, setUpdate] = useRecoilState(UpdateState);
-  const region = useRecoilValue(RegionRank);
+  const [gameData, setGameData] = useRecoilState(GameData);
+  const [region, setRegion] = useRecoilState(RegionRank);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,23 +54,38 @@ export default function PlayerInfo({ data }: AccountType) {
 
   useEffect(() => {
     game?.data.map((e: any) => {
-      if (e.teams.red > e.teams.blue) {
-        let red = "Red";
-        if (red == e.stats.team) {
-          setArr((prevArr) => [...prevArr, "승리"]);
-        } else {
-          setArr((prevArr) => [...prevArr, "패배"]);
+      if (e.meta.mode != "Deathmatch") {
+        if (e.teams.red > e.teams.blue) {
+          let red = "Red";
+          if (red == e.stats.team) {
+            setArr((prevArr) => [...prevArr, "승리"]);
+          } else {
+            setArr((prevArr) => [...prevArr, "패배"]);
+          }
+        } else if (e.teams.red < e.teams.blue) {
+          let blue = "Blue";
+          if (blue == e.stats.team) {
+            setArr((prevArr) => [...prevArr, "승리"]);
+          } else {
+            setArr((prevArr) => [...prevArr, "패배"]);
+          }
         }
-      } else if (e.teams.red < e.teams.blue) {
-        let blue = "Blue";
-        if (blue == e.stats.team) {
-          setArr((prevArr) => [...prevArr, "승리"]);
-        } else {
-          setArr((prevArr) => [...prevArr, "패배"]);
-        }
+      } else {
+        setArr((prevArr) => [...prevArr, "데스매치"]);
       }
     });
   }, [game]);
+
+  useEffect(() => {
+    console.log(game?.data);
+  });
+
+  const update = async () => {
+    const Account = await ValContent(data.name, data.tag, true);
+
+    setGameData(Account.data);
+    setRegion(Account.data.data.region);
+  };
 
   return (
     <S.InfoBox>
@@ -81,20 +97,20 @@ export default function PlayerInfo({ data }: AccountType) {
             <S.Name>
               {data.name}#{data.tag}
             </S.Name>
-            <S.Update>
-              <S.UpdateBtn onClick={() => setUpdate(true)}>
-                프로필 새로고침
-              </S.UpdateBtn>
+            <div>
+              <S.UpdateBtn onClick={update}>프로필 새로고침</S.UpdateBtn>
+              <SeasonList />
+
               <S.LastUpdate>마지막 업데이트 : {data?.last_update}</S.LastUpdate>
-            </S.Update>
+            </div>
           </div>
         </S.Profile>
         <ShowTier playerInfo={playerInfo} />
-        {game?.data?.map((e: ScoreType) => (
+        {game?.data?.map((e: ScoreType, index: number) => (
           <S.Body>
-            <S.ScoreBox key={e.meta.id}>
+            <S.ScoreBox key={e.meta.id} result={arr[index]}>
               <S.Score>
-                <div>
+                <S.Box>
                   <S.Mode>{e.meta.mode}</S.Mode>
                   <S.Date>
                     {extractDateTime(e.meta.started_at).formattedDate}
@@ -102,7 +118,7 @@ export default function PlayerInfo({ data }: AccountType) {
                   <S.Time>
                     {extractDateTime(e.meta.started_at).formattedTime}
                   </S.Time>
-                </div>
+                </S.Box>
                 <div>
                   <S.KillDet>
                     {e.stats.kills}&nbsp;/&nbsp;
@@ -113,7 +129,7 @@ export default function PlayerInfo({ data }: AccountType) {
                 <div>
                   <p>
                     {e.teams.blue == null ? (
-                      <div>없음</div>
+                      <div>&nbsp;</div>
                     ) : (
                       <div>
                         {e.teams.blue} : {e.teams.red}
@@ -121,11 +137,13 @@ export default function PlayerInfo({ data }: AccountType) {
                     )}
                   </p>
                 </div>
+                <div>{arr[index]}</div>
                 <GotoBottomBtn />
               </S.Score>
             </S.ScoreBox>
-            <S.More>
-              <Image src={More} alt="more" width={30} height={30} />
+
+            <S.More result={arr[index]}>
+              <Image src={More} alt="more" width={20} height={20} />
             </S.More>
           </S.Body>
         ))}

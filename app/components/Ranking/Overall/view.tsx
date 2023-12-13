@@ -33,7 +33,7 @@ export const Overall = () => {
   }, [contry]);
 
   const showPlayer = async (name: string, tag: string) => {
-    const Account = await ValContent(name, tag);
+    const Account = await ValContent(name, tag, false);
     const winRate = await WinnerRate(name, tag);
 
     setWin(winRate?.data?.data?.by_season);

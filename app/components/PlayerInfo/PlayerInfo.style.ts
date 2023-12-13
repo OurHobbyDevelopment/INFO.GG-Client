@@ -1,5 +1,5 @@
 import { winLoseColor } from "@/app/common/color";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const InfoBox = styled.div`
   display: flex;
@@ -30,12 +30,27 @@ export const Name = styled.p`
   margin: 10px;
 `;
 
-export const ScoreBox = styled.div`
+export const ScoreBox = styled.div<{ result: string }>`
   height: 6rem;
   padding: 20px;
   width: 55rem;
-  background-color: ${winLoseColor.valBlue};
   display: flex;
+
+  ${({ result }) => {
+    if (result === "승리") {
+      return css`
+        background-color: ${winLoseColor.valWin};
+      `;
+    } else if (result === "패배") {
+      return css`
+        background-color: ${winLoseColor.valLose};
+      `;
+    } else if (result === "데스매치") {
+      return css`
+        background-color: #02a357;
+      `;
+    }
+  }}
 `;
 
 export const Score = styled.div`
@@ -43,6 +58,10 @@ export const Score = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 70%;
+`;
+
+export const Box = styled.div`
+  width: 30%;
 `;
 
 export const Mode = styled.p`
@@ -71,21 +90,34 @@ export const Death = styled.p`
 
 export const Body = styled.div`
   display: flex;
-  background-color: ${winLoseColor.valBlue};
+  background-color: ${winLoseColor.valWin};
   margin-bottom: 5px;
 `;
 
-export const More = styled.div`
+export const More = styled.div<{ result: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${winLoseColor.valDeepBlue};
   height: 8.5rem;
   width: 3rem;
   cursor: pointer;
-`;
 
-export const Update = styled.div``;
+  ${({ result }) => {
+    if (result === "승리") {
+      return css`
+        background-color: ${winLoseColor.valDeepWin};
+      `;
+    } else if (result === "패배") {
+      return css`
+        background-color: ${winLoseColor.valDeepLose};
+      `;
+    } else if (result === "데스매치") {
+      return css`
+        background-color: #00703b;
+      `;
+    }
+  }}
+`;
 
 export const UpdateBtn = styled.button`
   margin: 10px;
@@ -111,4 +143,8 @@ export const UpdateBtn = styled.button`
 export const LastUpdate = styled.div`
   margin-left: 10px;
   opacity: 0.7;
+`;
+
+export const Result = styled.div`
+  width: 5rem;
 `;

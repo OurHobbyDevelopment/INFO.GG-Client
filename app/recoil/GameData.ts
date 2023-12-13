@@ -19,8 +19,3 @@ export const WinRate = atom<any | undefined>({
   key: "winRate",
   default: undefined,
 });
-
-export const UpdateState = atom<boolean>({
-  key: "updateState",
-  default: false,
-});
