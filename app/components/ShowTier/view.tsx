@@ -11,7 +11,7 @@ export const ShowTier = ({ playerInfo }: any) => {
     <S.TierBox>
       <S.Title>경쟁전</S.Title>
       <S.Container>
-        {playerInfo?.images.large ? (
+        {playerInfo?.images?.large ? (
           <>
             <Image
               src={playerInfo?.images?.large}

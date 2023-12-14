@@ -71,3 +71,11 @@ interface WeaponSkinType {
   };
   skin_id: string;
 }
+
+interface SeasonType {
+  season: string;
+}
+
+interface PlayerInfoType {
+  
+}

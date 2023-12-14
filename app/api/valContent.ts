@@ -13,7 +13,7 @@ export const ValContent = async (
 
 export const SeeAgent = async (region: string, name: string, tag: string) => {
   const res = await axios.get(
-    `https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${name}/${tag}`
+    `https://api.henrikdev.xyz/valorant/v2/mmr/${region}/${name}/${tag}`
   );
   return res;
 };

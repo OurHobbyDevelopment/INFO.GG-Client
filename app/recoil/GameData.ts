@@ -19,3 +19,8 @@ export const WinRate = atom<any | undefined>({
   key: "winRate",
   default: undefined,
 });
+
+export const SeasonData = atom<any[]>({
+  key: "seasonData",
+  default: [],
+});

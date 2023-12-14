@@ -44,7 +44,7 @@ export const Ranking = () => {
     const tag = targetPlayer?.tagLine;
 
     if (name && tag) {
-      const Account = await ValContent(name, tag);
+      const Account = await ValContent(name, tag, false);
       const winRate = await WinnerRate(name, tag);
 
       setWin(winRate?.data?.data?.by_season);

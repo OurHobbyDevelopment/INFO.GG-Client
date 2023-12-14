@@ -10,6 +10,7 @@ import { GotoBottomBtn } from "../GotoBottomBtn/view";
 import Image from "next/image";
 import More from "@/app/asset/png/more.png";
 import { SeasonList } from "../List/SeasonList/view";
+import { HistoryTier } from "./HistoryTier/view";
 
 const extractDateTime = (isoDateString: string) => {
   const dateObject = new Date(isoDateString);
@@ -28,8 +29,7 @@ const extractDateTime = (isoDateString: string) => {
 };
 
 export default function PlayerInfo({ data }: AccountType) {
-  // const [game, setGame] = useState<GameScoreType>();
-  const [game, setGame] = useState<any>();
+  const [game, setGame] = useState<GameScoreType>();
   const [total, setTotal] = useState<number>(0);
   const [playerInfo, setPlayerInfo] = useState<any>();
   const [arr, setArr] = useState<string[]>([]);
@@ -76,10 +76,6 @@ export default function PlayerInfo({ data }: AccountType) {
     });
   }, [game]);
 
-  useEffect(() => {
-    console.log(game?.data);
-  });
-
   const update = async () => {
     const Account = await ValContent(data.name, data.tag, true);
 
@@ -90,6 +86,7 @@ export default function PlayerInfo({ data }: AccountType) {
   return (
     <S.InfoBox>
       <S.Text>
+        <HistoryTier history={playerInfo?.by_season} />
         <S.Profile>
           <S.Card src={data.card.small} alt="Profile Image" />
           <div>
@@ -99,13 +96,13 @@ export default function PlayerInfo({ data }: AccountType) {
             </S.Name>
             <div>
               <S.UpdateBtn onClick={update}>프로필 새로고침</S.UpdateBtn>
-              <SeasonList />
+              <SeasonList season={playerInfo?.by_season} />
 
               <S.LastUpdate>마지막 업데이트 : {data?.last_update}</S.LastUpdate>
             </div>
           </div>
         </S.Profile>
-        <ShowTier playerInfo={playerInfo} />
+        <ShowTier playerInfo={playerInfo?.current_data} />
         {game?.data?.map((e: ScoreType, index: number) => (
           <S.Body>
             <S.ScoreBox key={e.meta.id} result={arr[index]}>

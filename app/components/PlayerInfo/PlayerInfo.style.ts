@@ -5,6 +5,7 @@ export const InfoBox = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 export const Text = styled.div`
   color: white;
   width: 60rem;
@@ -19,6 +20,7 @@ export const Profile = styled.div`
 export const Card = styled.img`
   border-radius: 10px;
 `;
+
 export const Level = styled.p`
   font-size: 1rem;
   margin-left: 10px;

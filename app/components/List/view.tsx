@@ -3,7 +3,6 @@ import { AffinityList } from "../Ranking/affinity";
 
 import { useRecoilState } from "recoil";
 import { selectContry, selectTier } from "@/app/recoil/ContryData";
-import { useEffect } from "react";
 
 export const List = () => {
   const [contry, setContry] = useRecoilState(selectContry);
