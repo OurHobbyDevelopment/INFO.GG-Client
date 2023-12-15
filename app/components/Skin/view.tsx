@@ -20,29 +20,35 @@ export const Skin = () => {
   }, []);
 
   return (
-    <div>
-      {/* <WeaponSearch /> 나중에 (지금 굳이 필요없음)*/}
-      {weaponData?.map((e: WeaponSkinType) => {
-        return (
-          <S.GridBox key={e.skin_id}>
-            {e.cost > 975 && (
-              <S.Grid>
-                <S.Name>
-                  <Image
-                    src={e.content_tier.icon}
-                    alt="grade"
-                    width={40}
-                    height={40}
+    <S.Box>
+      <S.Center>
+        {weaponData?.map((e: WeaponSkinType) => {
+          return (
+            e.cost > 975 && (
+              <S.GridBox key={e.skin_id}>
+                <S.Grid>
+                  <S.GunImg
+                    src={e.icon}
+                    alt="weaponSkin"
+                    width={"auto"}
+                    height={80}
                   />
-                  {e.name} | <S.Img src={VP} alt="cash" />
-                  {e.cost}VP
-                </S.Name>
-                <Image src={e.icon} alt="weaponSkin" width={180} height={60} />
-              </S.Grid>
-            )}
-          </S.GridBox>
-        );
-      })}
-    </div>
+                  <S.Name>
+                    <Image
+                      src={e.content_tier.icon}
+                      alt="grade"
+                      width={40}
+                      height={40}
+                    />
+                    {e.name} | <S.Img src={VP} alt="cash" />
+                    {e.cost}VP
+                  </S.Name>
+                </S.Grid>
+              </S.GridBox>
+            )
+          );
+        })}
+      </S.Center>
+    </S.Box>
   );
 };
